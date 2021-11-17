@@ -1,0 +1,20 @@
+//HELPER
+@import './Helper/variables';
+@import './Helper/mixin';
+//VENDOR
+
+//BASE
+@import './Base/reset';
+@import './Base/customize';
+//COMPONENTS (trc hoặc sau layouts đều dc)
+@import './Components/button';
+@import './Components/card';
+//LAYOUTS
+@import './Layouts/header';
+@import './Layouts/carousel';
+@import './Layouts/teacher';
+@import './Layouts/contact';
+@import './Layouts/footer';
+//PAGES
+@import './Pages/About/ourTeam';
+//THEME

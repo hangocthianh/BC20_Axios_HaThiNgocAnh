@@ -1,0 +1,64 @@
+.carouselWavy{
+    position: relative;
+    z-index: 2;
+    .carouselWavy__content{
+        padding: $pd-2 0;
+    }
+    .carouselWavy__bgTop{
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+    .carouselWavy__bgBottom{
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+    }
+    .carouselWavy__content{
+        h5{
+            @include styleText($fs-4, $fw-2, $color-pink);
+            text-transform: uppercase;
+        }
+        h2{
+            @include styleText($fs-1, $fw-1, $color-dark-1);
+        }
+    }
+    img{
+        width: 100%;
+    }
+}
+
+//responsive
+@include responsive("large-down"){
+    .carouselWavy{
+        padding-top: $pd-2 ;
+        .carouselWavy__content{
+            h2{
+                @include styleText($fs-1 - 0.3, $fw-1, $color-dark-1);
+            }
+        }
+    } 
+}
+@include responsive("medium-down"){
+    .carouselWavy{
+        padding-top: $pd-2 ;
+        .carouselWavy__content{
+            h2{
+                @include styleText($fs-1 - 0.65, $fw-1, $color-dark-1);
+            }
+        }
+    } 
+}
+@include responsive("small-down"){
+    .carouselWavy{
+        padding-top: $pd-2 ;
+        .carouselWavy__content{
+            h5{
+                @include styleText($fs-5, $fw-2, $color-pink);
+            }
+            h2{
+                @include styleText($fs-3 - 0.3, $fw-1, $color-dark-1);
+            }
+        }
+    } 
+}

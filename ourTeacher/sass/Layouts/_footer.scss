@@ -1,0 +1,36 @@
+footer {
+    background-image: url(../images/footer_background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: $pd-1 0;
+    h3 {
+        @include styleText($fs-3, $fw-1, $color-white);
+        padding-bottom: $pd-8;
+    }
+    li a,
+    span {
+        @include styleText($fs-6, $fw-4, $color-white);
+    }
+    .footer__contact i {
+        @include styleText($fs-5, 0, $color-white);
+        padding-right: $pd-11;
+    }
+    .footer__link li {
+        border-bottom: $bd-1 solid $color-radius-1;
+        padding: $pd-10 0;
+        line-height: $lh-3;
+    }
+    .footer__newsletter {
+        input[type="email"] {
+            @include styleInput(transparent, $pd-4, $bd-1 solid $color-radius-3, $bd-2);
+            text-align: center;
+            transition: all 1s;
+            outline: none;
+            &:focus {
+                @include styleInput(transparent, $pd-4, $bd-1 solid $color-white, $bd-2);
+            }
+        }
+    }
+}
+

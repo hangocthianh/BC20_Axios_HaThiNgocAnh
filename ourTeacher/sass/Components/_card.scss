@@ -1,0 +1,28 @@
+.teacher__card{
+    text-align: center;
+    border-radius: $bd-3;
+    border: 0;
+    margin: 0 $mg-3 - 2;
+    z-index: 3;
+    transition: all 0.5s;
+    h5{
+        @include styleText($fs-9, $fw-2, $color-pink);
+        text-transform: uppercase;
+    }
+    h3{
+        @include styleText($fs-3, $fw-1, $color-dark-1);
+    }
+    p{
+        @include styleText($fs-5, $fw-4, $color-dark-2);
+    }
+    .card-body{
+        padding: $pd-5 $pd-6;
+    }
+    img{
+        border-radius: $bd-3 $bd-3 0 0;
+    }
+    &:hover{
+        box-shadow: 0 30px 30px -10px $color-radius-2;
+    }
+
+}

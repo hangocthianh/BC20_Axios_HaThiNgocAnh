@@ -1,0 +1,88 @@
+header {
+    position: absolute;
+    width: 100%;
+    position: fixed;
+    z-index: 9;
+    .navbar-brand {
+        padding: 0;
+        img {
+            width: 80px;
+        }
+    }
+    .navbar-toggler-icon{
+        font-size: $fs-3;
+        line-height: 1.5em;
+        color: $color-pink;
+    }
+    #navbarWavy {
+        .nav-link {
+            position: relative;
+            @include styleText($fs-8, $fw-2, $color-dark-2);
+            font-family: $ff-2;
+            line-height: $lh-4;
+            padding: 0 $pd-3 0 0;
+            transition: all 0.3s;
+            &::after {
+                content: "";
+                width: 8px;
+                height: 8px;
+                display: block;
+                background-color: $color-pink;
+                border-radius: $bd-2;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                left: 25%;
+                opacity: 0;
+                transition: all 0.5s;
+            }
+            &:hover {
+                @include styleText($fs-8, $fw-2, $color-pink);
+                &::after{
+                    opacity: 1;
+                }
+            }
+        }
+        .active {
+            .nav-link {
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .header__icon i {
+        color: $color-dark-2;
+        padding-left: $pd-10;
+    }
+}
+
+//responsive
+@include responsive("extra-large-down"){
+    header{
+        #navbarWavy{
+            .nav-link{
+                padding: 0 $pd-6 0 0;
+            }
+        } 
+        .header__icon i{
+            padding-left: $pd-10 - 5;
+            }
+    } 
+}
+@include responsive("large-down"){
+    header{
+        #navbarWavy{
+            .nav-link{
+                text-align: center;
+                background-color: $color-radius-1;
+            }
+        }
+        .navbar-brand {
+            img {
+                width: 60px;
+            }
+        }
+        background-color: $color-white;
+        height: 75px;
+    } 
+}

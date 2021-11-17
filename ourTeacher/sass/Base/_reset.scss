@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    font-family: $ff-1;
+    font-size: 15px;
+    font-weight: $fw-4;
+    line-height: 1.8em;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: $ff-2;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+::placeholder{
+    color: $color-white;
+    font-family: $ff-1;
+    font-size: $fs-6;
+    }

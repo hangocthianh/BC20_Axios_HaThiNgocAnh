@@ -1,0 +1,23 @@
+.teacher {
+    background-color: $color-purple;
+    z-index: 1;
+    position: relative;
+    padding-top: $pd-8;
+    .teacher__bgBottom {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+//responsive
+@include responsive("large-down") {
+    .teacher {
+        p {
+            font-size: $fs-6;
+        }
+    }
+}

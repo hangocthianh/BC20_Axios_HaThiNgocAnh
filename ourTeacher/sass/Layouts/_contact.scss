@@ -1,0 +1,62 @@
+.contact {
+    padding-top: $pd-2;
+    position: relative;
+    .contact__bgBottom {
+        position: absolute;
+        bottom: 0;
+        z-index: -1;
+        img {
+            width: 100%;
+        }
+    }
+    .contact__form {
+        background-color: $color-white;
+        border-radius: $bd-3;
+        box-shadow: 0 30px 30px -10px $color-radius-2;
+        padding: $pd-3 $pd-6;
+        h3 {
+            @include styleText($fs-2, $fw-1, $color-dark-1);
+            text-align: center;
+            padding-bottom: $pd-6;
+        }
+        input,
+        select {
+            border-radius: 50px;
+            height: 45px;
+        }
+        textarea {
+            border-radius: 20px;
+            height: 90px;
+        }
+        .form-control {
+            line-height: 2;
+            padding-left: $pd-4;
+        }
+        .contact_input {
+            position: relative;
+            i {
+                position: absolute;
+                top: 15px;
+                left: 20px;
+                color: $color-pink;
+            }
+        }
+        .btnWavy-pink {
+            padding: $pd-9 $pd-3;
+        }
+    }
+}
+
+
+
+//responsive
+@include responsive("medium-down"){
+    .contact{
+        padding-top: $pd-3 ;
+        .contact__form{
+            h3 {
+                @include styleText($fs-2 - 0.5, $fw-1, $color-dark-1);
+            }
+        }
+    } 
+}

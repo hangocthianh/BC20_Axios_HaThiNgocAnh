@@ -1,0 +1,25 @@
+.btnWavy-pink{
+    @include styleButton(transparent, $pd-9 $pd-7,0, $bd-2, 0 0 0 $pd-4 $color-pink inset);
+    @include styleText($fs-6, $fw-3, $color-white );
+    line-height: $lh-1;
+    margin: $mg-3;
+    transition: all 0.5s;
+    &:hover{
+        @include hoverButton($color-white, $color-pink, 0 0 0 1px $color-pink inset);
+    }
+    i{
+        padding: 0 $pd-10/2 0 0;
+    }
+}
+.btnWavy-white{
+    @include styleButton(transparent, $pd-9 $pd-7,0, $bd-2, 0 0 0 $pd-4 $color-white inset);
+    @include styleText($fs-6, $fw-3, $color-dark-2 );
+    font-family: $ff-2;
+    line-height: $lh-1;
+    margin-top: $mg-2;
+    transition: all 0.5s;
+    &:hover{
+        @include hoverButton($color-pink, $color-white, 0 0 0 1px $color-white inset);
+    }
+}
+
