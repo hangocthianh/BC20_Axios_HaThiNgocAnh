@@ -77,16 +77,16 @@ function Validation() {
         getEle(spanID).style.display = "block";
         return false;
     }
-        // kiểm tra mật khẩu hợp lệ
-        this.checkDescription = function (value, message, spanID) {
-            var pattern = /^.{1,60}$/;
-            if (value.match(pattern)) {
-                getEle(spanID).innerHTML = "";
-                getEle(spanID).style.display = "none";
-                return true;
-            }
-            getEle(spanID).innerHTML = message;
-            getEle(spanID).style.display = "block";
-            return false;
+    // kiểm tra mô tả dưới 60 kí tự
+    this.checkDescription = function (value, message, spanID) {
+        var pattern = /^.{1,60}$/;
+        if (value.match(pattern)) {
+            getEle(spanID).innerHTML = "";
+            getEle(spanID).style.display = "none";
+            return true;
         }
+        getEle(spanID).innerHTML = message;
+        getEle(spanID).style.display = "block";
+        return false;
+    }
 }
