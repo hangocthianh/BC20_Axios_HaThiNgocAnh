@@ -17,30 +17,37 @@ function getUserList() {
 }
 getUserList();
 
-//kiểm tra thông tin
-function validation(hoTen, matKhau, email, moTa, hinhAnh, taiKhoan){
-    service
-    .getUserListAPI()
-    .then(function (result) {
-        var isvalid = true;
-        isvalid &= valid.checkEmpty(taiKhoan, "Tài khoản không được để trống!", "tbTaiKhoan") && valid.checkAccount(taiKhoan, "Tài khoản bị trùng!", "tbTaiKhoan", result.data);
-        isvalid &= valid.checkEmpty(hoTen, "Họ tên không được để trống!", "tbHoTen") && valid.checkName(hoTen, "Họ tên phải là chữ và không có kí tự đặc biệt!", "tbHoTen");
-        isvalid &= valid.checkEmpty(matKhau, "Mật khẩu không được để trống!", "tbMatKhau") && valid.checkPass(matKhau, "Mật khẩu phải có ít nhất 1 ký tự hoa, 1 ký tự đặc biệt, 1 ký tự số, độ dài 6-8!", "tbMatKhau");
-        isvalid &= valid.checkEmpty(email, "Email không được để trống!", "tbEmail") && valid.checkEmail(email, "Email phải đúng định dạng!", "tbEmail");
-        isvalid &= valid.checkEmpty(hinhAnh, "Hình ảnh không được để trống!", "tbHinhAnh");
-        isvalid &= valid.checkSelect("loaiNguoiDung", "Hãy chọn loại người dùng!", "tbLoaiNguoiDung");
-        isvalid &= valid.checkSelect("loaiNgonNgu", "Hãy chọn loại ngôn ngữ!", "tbLoaiNgonNgu");
-        isvalid &= valid.checkEmpty(moTa, "Mô tả không được để trống!", "tbMoTa") && valid.checkDescription(moTa, "Mô tả không vượt quá 60 ký tự!", "tbMoTa");
-    })
-    .catch(function (error) {
-        console.log(error);
-    })
+
+//kiểm tra thông tin 
+function validationUpdate(hoTen, matKhau, email, moTa, hinhAnh) {
+    var isvalid = true;
+    isvalid &= valid.checkEmpty(hoTen, "Họ tên không được để trống!", "tbHoTen") && valid.checkName(hoTen, "Họ tên phải là chữ và không có kí tự đặc biệt!", "tbHoTen");
+    isvalid &= valid.checkEmpty(matKhau, "Mật khẩu không được để trống!", "tbMatKhau") && valid.checkPass(matKhau, "Mật khẩu phải có ít nhất 1 ký tự hoa, 1 ký tự đặc biệt, 1 ký tự số, độ dài 6-8!", "tbMatKhau");
+    isvalid &= valid.checkEmpty(email, "Email không được để trống!", "tbEmail") && valid.checkEmail(email, "Email phải đúng định dạng!", "tbEmail");
+    isvalid &= valid.checkEmpty(hinhAnh, "Hình ảnh không được để trống!", "tbHinhAnh");
+    isvalid &= valid.checkSelect("loaiNguoiDung", "Hãy chọn loại người dùng!", "tbLoaiNguoiDung");
+    isvalid &= valid.checkSelect("loaiNgonNgu", "Hãy chọn loại ngôn ngữ!", "tbLoaiNgonNgu");
+    isvalid &= valid.checkEmpty(moTa, "Mô tả không được để trống!", "tbMoTa") && valid.checkDescription(moTa, "Mô tả không vượt quá 60 ký tự!", "tbMoTa");
+    return isvalid;
 }
+function validationAdd(hoTen, matKhau, email, moTa, hinhAnh,taiKhoan, array) {
+    var isvalid = true;
+    isvalid &= valid.checkEmpty(taiKhoan, "Tài khoản không được để trống!", "tbTaiKhoan") && valid.checkAccount(taiKhoan, "Tài khoản bị trùng!", "tbTaiKhoan", array);
+    isvalid &= valid.checkEmpty(hoTen, "Họ tên không được để trống!", "tbHoTen") && valid.checkName(hoTen, "Họ tên phải là chữ và không có kí tự đặc biệt!", "tbHoTen");
+    isvalid &= valid.checkEmpty(matKhau, "Mật khẩu không được để trống!", "tbMatKhau") && valid.checkPass(matKhau, "Mật khẩu phải có ít nhất 1 ký tự hoa, 1 ký tự đặc biệt, 1 ký tự số, độ dài 6-8!", "tbMatKhau");
+    isvalid &= valid.checkEmpty(email, "Email không được để trống!", "tbEmail") && valid.checkEmail(email, "Email phải đúng định dạng!", "tbEmail");
+    isvalid &= valid.checkEmpty(hinhAnh, "Hình ảnh không được để trống!", "tbHinhAnh");
+    isvalid &= valid.checkSelect("loaiNguoiDung", "Hãy chọn loại người dùng!", "tbLoaiNguoiDung");
+    isvalid &= valid.checkSelect("loaiNgonNgu", "Hãy chọn loại ngôn ngữ!", "tbLoaiNgonNgu");
+    isvalid &= valid.checkEmpty(moTa, "Mô tả không được để trống!", "tbMoTa") && valid.checkDescription(moTa, "Mô tả không vượt quá 60 ký tự!", "tbMoTa");
+    return isvalid;
+}
+
 
 // hiện thị thông tin lên bản
 function renderUser(data) {
     var html = "";
-    data.forEach(function (user, index) {
+    data?.forEach(function (user, index) {
         html += `
             <tr>
             <td>${index + 1}</td>
@@ -77,7 +84,7 @@ function deleteUser(id) {
 // thêm tiêu đề và nút modal thêm sản phẩm
 getEle("btnThemNguoiDung").addEventListener("click", function () {
     document.getElementsByClassName("modal-title")[0].innerHTML = "Thêm người dùng";
-    document.getElementsByClassName("modal-footer")[0].innerHTML = `<button class="btn btn-info" onclick="addUser()">Thêm</button>`
+    document.getElementsByClassName("modal-footer")[0].innerHTML = `<button class="btn btn-info" onclick="addUser()">Thêm</button>`;
 });
 // thêm người dùng
 function addUser() {
@@ -89,20 +96,25 @@ function addUser() {
     var ngonNgu = getEle("loaiNgonNgu").value;
     var moTa = getEle("MoTa").value;
     var hinhAnh = getEle("HinhAnh").value;
-    var user = new User("", taiKhoan, hoTen, matKhau, email, loaiND, ngonNgu, moTa, hinhAnh);
-    if(validation(hoTen, matKhau, email, moTa, hinhAnh, taiKhoan)){
-        service
-        .addUserAPI(user)
+    var user = new User("", taiKhoan.trim(), hoTen, matKhau, email, loaiND, ngonNgu, moTa, hinhAnh);
+    service
+        .getUserListAPI()
         .then(function (result) {
-            document.getElementsByClassName("close")[0].click();
-            getUserList();
-
+            if (validationAdd(hoTen, matKhau, email, moTa, hinhAnh, taiKhoan, result.data)) {
+                service
+                    .addUserAPI(user)
+                    .then(function (result) {
+                        document.getElementsByClassName("close")[0].click();
+                        getUserList();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }
         })
         .catch(function (error) {
             console.log(error);
         })
-    }
-
 }
 
 
@@ -114,6 +126,7 @@ function editUser(id) {
     service
         .getUserById(id)
         .then(function (result) {
+            getEle("TaiKhoan").disabled = true;
             getEle("TaiKhoan").value = result.data.taiKhoan;
             getEle("HoTen").value = result.data.hoTen;
             getEle("MatKhau").value = result.data.matKhau;
@@ -137,16 +150,25 @@ function updateUser(id) {
     var ngonNgu = getEle("loaiNgonNgu").value;
     var moTa = getEle("MoTa").value;
     var hinhAnh = getEle("HinhAnh").value;
-    var user = new User(id, taiKhoan, hoTen, matKhau, email, loaiND, ngonNgu, moTa, hinhAnh);
-    if(validation(hoTen, matKhau, email, moTa, hinhAnh, taiKhoan)){
-        service
-        .updateUserAPI(user)
+    var user = new User(id, taiKhoan.trim(), hoTen, matKhau, email, loaiND, ngonNgu, moTa, hinhAnh);
+    service
+        .getUserListAPI()
         .then(function (result) {
-            document.getElementsByClassName("close")[0].click();
-            getUserList();
+            if (validationUpdate(hoTen, matKhau, email, moTa, hinhAnh) ) {
+                service
+                    .updateUserAPI(user)
+                    .then(function (result) {
+                        document.getElementsByClassName("close")[0].click();
+                        getUserList();
+                        getEle("TaiKhoan").disabled = false;
+                        getEle("formFood").reset();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+            }
         })
         .catch(function (error) {
             console.log(error);
         })
 }
-    }
